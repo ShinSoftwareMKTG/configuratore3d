@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Animata</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Sfondo animato */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #67bbaf, #5aa89c, #4d9b8e, #67bbaf, #7ac4b3, #5aa89c);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            z-index: 1;
+        }
+
+        /* Forme decorative */
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .shape:nth-child(4) {
+            width: 40px;
+            height: 40px;
+            top: 30%;
+            left: 70%;
+            animation-delay: 1s;
+        }
+
+        .shape:nth-child(5) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 60%;
+            animation-delay: 3s;
+        }
+
+        /* Container principale */
+        .main-container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Logo */
+        .logo {
+            width: 300px;
+            height: 150px;
+
+            backdrop-filter: blur(10px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+
+            position: relative;
+            animation: logoFloat 4s ease-in-out infinite;
+ 
+        }
+
+        .logo::before {
+
+        }
+
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Titolo */
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            opacity: 1;
+        }
+
+        /* Descrizione */
+        .description {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            opacity: 1;
+        }
+
+        /* Bottone */
+        .cta-button {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Animazioni */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-30px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(30px) rotate(240deg);
+            }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Animazioni di entrata */
+        .main-container {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .logo::before {
+                width: 170px;
+                height: 170px;
+            }
+
+            .logo-text {
+                font-size: 2rem;
+            }
+
+            .title {
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+            }
+
+            .description {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+                padding: 0 20px;
+            }
+
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .shape {
+                transform: scale(0.7);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .logo::before {
+                width: 140px;
+                height: 140px;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .description {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sfondo animato -->
+    <div class="animated-background"></div>
+
+    <!-- Forme fluttuanti -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Container principale -->
+    <div class="main-container">
+        <!-- Logo centrale -->
+        <div class="logo">
+            <div class="logo-text"><img src="images/Shin_software_logo_orizz_bianco.png"></div>
+        </div>
+
+        <!-- Titolo -->
+        <h1 class="title">Configuratore 3D Codeless</h1>
+
+        <!-- Descrizione -->
+        <p class="description">
+			
+            Scopri soluzioni innovative che trasformano le tue idee in realtà. 
+            Un'esperienza digitale che supera ogni aspettativa.
+			Crea esperienze di vendita interattive senza programmazione. <br>
+            Personalizza prodotti in tempo reale e aumenta le conversioni del 40%.<br>
+        </p>
+
+        <!-- Bottone -->
+        <a href="http://showin3d.com" class="cta-button" target="_blank">
+            Scopri il 3d interattivo
+        </a>
+    </div>
+
+    <script>
+        // Effetto cursore interattivo per le forme
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            shapes.forEach((shape, index) => {
+                const rect = shape.getBoundingClientRect();
+                const shapeX = rect.left + rect.width / 2;
+                const shapeY = rect.top + rect.height / 2;
+                
+                const distanceX = mouseX - shapeX;
+                const distanceY = mouseY - shapeY;
+                const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+                
+                if (distance < 200) {
+                    const strength = (200 - distance) / 200;
+                    const moveX = (distanceX / distance) * strength * 20;
+                    const moveY = (distanceY / distance) * strength * 20;
+                    
+                    shape.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    shape.style.opacity = 0.3 + (strength * 0.3);
+                } else {
+                    shape.style.transform = 'translate(0, 0)';
+                    shape.style.opacity = 0.1;
+                }
+            });
+        });
+
+        // Cambio gradiente basato sull'ora
+        function updateGradientByTime() {
+            const hour = new Date().getHours();
+            const background = document.querySelector('.animated-background');
+            
+            if (hour >= 6 && hour < 12) {
+                // Mattina
+                background.style.background = 'linear-gradient(-45deg, #7ac4b3, #67bbaf, #5aa89c, #7ac4b3, #8dccc1, #67bbaf)';
+            } else if (hour >= 12 && hour < 18) {
+                // Pomeriggio
+                background.style.background = 'linear-gradient(-45deg, #67bbaf, #5aa89c, #4d9b8e, #67bbaf, #7ac4b3, #5aa89c)';
+            } else {
+                // Sera/Notte
+                background.style.background = 'linear-gradient(-45deg, #5aa89c, #4d9b8e, #408a7d, #5aa89c, #67bbaf, #4d9b8e)';
+            }
+        }
+
+        // Applica il gradiente
+        updateGradientByTime();
+        
+        // Aggiorna ogni ora
+        setInterval(updateGradientByTime, 3600000);
+    </script>
+</body>
+</html>
