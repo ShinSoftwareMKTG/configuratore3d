@@ -172,7 +172,8 @@ body {
 }
 
 .cta-button2{
-  width:100%;
+  width:80%;
+  margin-top:20px;
 }
 
 .cta-button::before {
@@ -265,9 +266,11 @@ body {
 @media (max-width: 768px) {
   .cta-button{
     width:100% !important;
-    min-height: 70px;
     vertical-align: middle;
     margin-bottom:5px;
+  }
+  .cta-button2{
+    margin-top:0;
   }
   .grid {
     grid-template-columns: repeat(2, 1fr);
