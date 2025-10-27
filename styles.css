@@ -168,6 +168,11 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
+  width:50%;
+}
+
+.cta-button2{
+  width:100%;
 }
 
 .cta-button::before {
@@ -258,6 +263,12 @@ body {
 }
 
 @media (max-width: 768px) {
+  .cta-button{
+    width:100% !important;
+    min-height: 70px;
+    vertical-align: middle;
+    margin-bottom:5px;
+  }
   .grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
