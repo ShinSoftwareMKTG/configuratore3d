@@ -16,6 +16,7 @@ body {
 
 /* Sfondo animato */
 .animated-background {
+  display:none;
   position: fixed;
   top: 0;
   left: 0;
@@ -23,12 +24,12 @@ body {
   height: 100%;
   background: linear-gradient(
     -45deg,
-    #67bbaf,
+    #02d3b4,
     #5aa89c,
     #4d9b8e,
-    #67bbaf,
+    #00836f,
     #7ac4b3,
-    #5aa89c
+    #20c7ae
   );
   background-size: 400% 400%;
   animation: gradientShift 8s ease infinite;
@@ -211,7 +212,7 @@ body {
   background: linear-gradient(
     135deg,
     rgba(0, 0, 0, 0.8) 0%,
-    rgba(24, 44, 20, 0.8) 100%
+    rgba(25, 156, 124, 0.89) 100%
   );
   min-height: 100vh;
   padding: 2rem;
